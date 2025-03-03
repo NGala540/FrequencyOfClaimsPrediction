@@ -38,3 +38,4 @@ Data source: R-Package CASDatasets
 **Other models:** in progress
 
 ## Potential improvements
+- using imputation method instead deleting rows with missing values
