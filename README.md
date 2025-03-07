@@ -39,3 +39,4 @@ Data source: R-Package CASDatasets
 
 ## Potential improvements
 - using imputation method instead deleting rows with missing values
+- further feature engeneering, explorying additional combination od data
