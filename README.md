@@ -39,4 +39,5 @@ Data source: R-Package CASDatasets
 
 ## Potential improvements
 - using imputation method instead deleting rows with missing values
-- further feature engeneering, explorying additional combination od data
+- further feature engineering, exploring additional combinations of data
+- create functions for data preprocessing and combine it into pipeline
