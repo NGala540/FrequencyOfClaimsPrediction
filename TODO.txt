@@ -1,0 +1,5 @@
+1. wytrenować GLM
+2. przeuczenie
+3. odpowiedzi
+4. opisać notebooki
+5. zaaktualizować readme
