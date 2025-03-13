@@ -41,3 +41,6 @@ Data source: R-Package CASDatasets
 - using imputation method instead deleting rows with missing values
 - further feature engineering, exploring additional combinations of data
 - create functions for data preprocessing and combine it into pipeline
+- use stratified spliting method for train-test datasets
+- use MLFlow package for results presentation
+- use Cloud based service for model training
