@@ -29,11 +29,11 @@ Data source: R-Package CASDatasets
 
 
 ## Results
-**Chosen model:** 
+**Chosen model:** Zero Inflated Poisson Model
 
-**Explenation:** 
+**Explenation:** based on 
 
-**Metrics:** in progress
+**Metrics:** MSE = 
 
 **Other models:** in progress
 
@@ -49,6 +49,9 @@ Data source: R-Package CASDatasets
 
 ## Additional reaserch
 ### Customer segments for which GLM and ML family model predictions differ the most
+
+
+
 ### Customers with the highest and lowest risk and their predicted claim frequency for the GLM class model
 
 #### Highest claims frequency
@@ -81,3 +84,4 @@ Data source: R-Package CASDatasets
 
 
 ### The variable that most differentiates the predicted claim frequency for the GLM class model
+For the GLM model, the variable differentiating the predicted claim frequency the most is ... with the coefficient of ... and marginal effect for mean values of ...
