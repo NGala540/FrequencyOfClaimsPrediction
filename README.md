@@ -29,13 +29,27 @@ Data source: R-Package CASDatasets
 
 
 ## Results
-**Chosen model:** Zero Inflated Poisson Model
+**Chosen model:** 
 
-**Explenation:** based on 
+Zero Inflated Poisson Model
 
-**Metrics:** MSE = 
+**Explenation:** 
 
-**Other models:** in progress
+The choice of model is driven by the characteristics of the data. A large proportion of zeros suggests that the data may come from two separate generating processes — one for non-claimers and another for potential claimers. The Zero-Inflated Poisson (ZIP) model helps separate these two groups, leading to improved prediction accuracy.
+
+The number of claims is a positive integer. Thus, this target can be modelled by a Poisson distribution. It is then assumed to be the number of discrete events occurring with a constant rate in a given time interval. Here we model the frequency = claim number / exposure, which is still a (scaled) Poisson distribution.
+
+Finally, the model selection was based on a Mean Squared Error (MSE), the Likelihood Ratio Test (LRT), and computational efficiency.
+
+**Metrics:** 
+
+MSE = 
+
+**Other models:**
+
+1. Zero-Inflated Negative Binomial (ZINB) model – While training, the model ran into an issue with a non-invertible Hessian matrix, which typically signals numerical instability. After digging into it, I found two possible reasons: overfitting (too many variables for the dataset size) and extreme dispersion, making it hard for the model to estimate variance. Since the variance-to-mean ratio (1.92) wasn’t excessively high, I decided to drop ZINB in favor of a standard Negative Binomial (NB) model. NB’s mean-variance relationship already allows it to handle some zero inflation without needing a separate zero-inflation component.
+2. Negative Binomial (NB) model – To compare performance, I ran a Likelihood Ratio Test (LRT) against a Zero-Inflated Poisson (ZIP) model. Even though NB and ZIP aren’t technically nested, ZIP is the more complex model, and LRT still gives a reasonable comparison. The results showed ZIP had a better fit, so I went with that.
+3. Random Forest (classification) + XGBoost (regression) combination – An initial test of this approach resulted in higher Mean Squared Error (MSE) compared to the ZIP model. While this hybrid model has the potential to outperform ZIP with further hyperparameter tuning and data preprocessing, the computational resources required stoped further exploration. As a result, this approach was deprecated.
 
 ## Potential improvements
 - using imputation method instead deleting rows with missing values
