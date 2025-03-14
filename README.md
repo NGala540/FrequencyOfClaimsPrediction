@@ -12,7 +12,7 @@ Understanding and predicting claim frequency is crucial for risk assessment, pri
 In insurance, a bonus–malus system (BMS) is a system that adjusts the premium paid by a customer according to their individual claim history. A bonus is usually a discount in the premium which is given on the renewal of the policy if no claim is made in the previous year. Malus is an increase in the premium if there is a claim in the previous year. The fundamental principle of BMS is that the higher the claim frequency of a policyholder, the higher the insurance costs that on average are charged to the policyholder. This principle is also valid in an insurance arrangement consisting of a high maximum deductible which is common to all policyholders.
 
 ## Data Explanation
-Data source: R-Package CASDatasets
+Data source: R-Package CASDatasets: Frequency analysis of a French Motor Third Party Liability dataset - modified
 
 - IDpol - The policy ID
 - ClaimNb - Number of claims during the exposure period
@@ -24,46 +24,58 @@ Data source: R-Package CASDatasets
 - BonusMalus - Bonus/malus, between 50 and 350 (<100 means bonus, >100 means malus in France). 
 - VehBrand - The car brand (coded categories)
 - VehGas - The car gas, Diesel or regular
-- Density - The density of inhabitants (number of inhabitants per km2) in the city the driver of the car lives in
+- Density - The density of inhabitants (number of inhabitants per km2) in the city where the driver of the car lives in
 - Region - The policy regions in France (based on a standard French classification)
 
 
 ## Results
 **Chosen model:** 
 
-ZeroInflatedPoisson Regression Results                    
+Combination of two models:
+- Random Forest for classification - RandomForestClassifier(class_weight='balanced', max_depth=20, n_estimators=200, random_state=42)
+- XGBoost for regression - XGBRegressor(objective ='reg:squarederror', max_depth = 5, n_estimators = 50, seed = 42)
 
-**Explenation:** 
+XGBoost predicts the frequency of a claim when Random Forest classifies observation as positive (client is a "claimer")
 
-The choice of model is driven by the characteristics of the data. A large proportion of zeros suggests that the data may come from two separate generating processes — one for non-claimers and another for potential claimers. Dividing problem into classification and regression helps separate these two groups, leading to improved prediction accuracy.
+**Explanation:** 
 
-The model selection was based on a structure of predicted values very similar to real claim frequency. Even though Zero-Inflated Poisson model had lower mean squared error, model didn't manage to predict 0 properly. Furthermore, ML model shows bigger potential for improvement.
+The characteristics of the data drive the choice of model. Many zeros suggest that the data may come from two separate generating processes — one for non-claimers and another for potential claimers. Dividing the problem into classification and regression helps separate these two groups, leading to improved prediction accuracy.
+
+The model selection was based on a structure of predicted values very similar to real claim frequency. Even though the Zero-Inflated Poisson model had a lower mean squared error, the model didn't manage to predict 0 properly. Furthermore, the ML model shows bigger potential for improvement.
 
 **Metrics:** 
 
-MSE = 0.35
+Classification Accuracy: 0.85
+Classification Precision: 0.11
+Classification Recall: 0.27
+Classification F1: 0.15
+Classification AUC: 0.58
+
+RMSE of regression model: 0.68
+
+MSE of combination: 0.35
 
 **Other models:**
 
-1. Zero-Inflated Poisson (ZIP) – The number of claims is a positive integer. Thus, this target can be modelled by a Poisson distribution. It is then assumed to be the number of discrete events occurring with a constant rate in a given time interval. Here we model the frequency = claim number / exposure, which is still a (scaled) Poisson distribution. Furthermore the Zero-Inflated Poisson model helps separate two groups (claimers, non-claimers), leading to improved prediction accuracy. Even though strong theory stands behind the model and MSE is better than choosen model, ZIP didn't manage to predict zeros properly, and its claim frequency was generaly lower than expected in a "claimers" group. Therefore I decided that combined ML model provide better business value. 
+1. Zero-Inflated Poisson (ZIP) – The number of claims is a positive integer. Thus, this target can be modelled by a Poisson distribution. It is then assumed to be the number of discrete events occurring at a constant rate in a given time interval. Here, we model the frequency = claim number/exposure, which is still a (scaled) Poisson distribution. Furthermore the Zero-Inflated Poisson model helps separate two groups (claimers, non-claimers), leading to improved prediction accuracy. Even though a strong theory stands behind the model and MSE is better than the chosen model, ZIP didn't manage to predict zeros properly, and its claim frequency was generally lower than expected in a "claimers" group. Therefore, I decided that a combined ML model provides better business value. 
    
 2. Zero-Inflated Negative Binomial (ZINB) model – While training, the model ran into an issue with a non-invertible Hessian matrix, which typically signals numerical instability. After digging into it, I found two possible reasons: overfitting (too many variables for the dataset size) and extreme dispersion, making it hard for the model to estimate variance. Since the variance-to-mean ratio (1.92) wasn’t excessively high, I decided to drop ZINB in favor of a standard Negative Binomial (NB) model. NB’s mean-variance relationship already allows it to handle some zero inflation without needing a separate zero-inflation component.
    
-3. Negative Binomial (NB) model – To compare performance, I ran a Likelihood Ratio Test (LRT) against a Zero-Inflated Poisson (ZIP) model. Even though NB and ZIP aren’t technically nested, ZIP is the more complex model, and LRT still gives a reasonable comparison. The results showed ZIP had a better fit.
+3. Negative Binomial (NB) model – To compare performance, I ran a Likelihood Ratio Test (LRT) against a Zero-Inflated Poisson (ZIP) model. Even though NB and ZIP aren’t technically nested, ZIP is the more complex model, and LRT still gives a reasonable comparison. The results showed that ZIP had a better fit.
 
 
 ## Potential improvements
 - using imputation method instead deleting rows with missing values
 - further feature engineering, exploring additional combinations of data
 - create functions for data preprocessing and combine it into pipeline
-- use stratified spliting method for train-test datasets
+- use stratified splitting method for train-test datasets
 - use MLFlow package for results presentation
-- use cloud based service for model training
-- testing other ML algorithms for classification / regression problem
-- further hiperparameter tuning
+- use cloud-based service for model training
+- testing other ML algorithms for classification/regression problem
+- further hyperparameter tuning
 - implementing other balance methods for exogenous variable
 
-## Additional reaserch
+## Additional research
 ### Customer segments for which GLM and ML family model predictions differ the most
 Top client segments where model predictions differ the most:
 1. Clients in region R24
