@@ -44,6 +44,7 @@ Data source: R-Package CASDatasets
 - use stratified spliting method for train-test datasets
 - use MLFlow package for results presentation
 - use cloud based service for model training
+- testing other ML algorithms for classification / regression problem
 - further hiperparameter tuning
 - implementing other balance methods for exogenous variable
 
