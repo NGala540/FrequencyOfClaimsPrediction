@@ -33,69 +33,6 @@ Data source: R-Package CASDatasets
 
 ZeroInflatedPoisson Regression Results                    
 
-Dep. Variable:          ClaimFrequency   
-No. Observations:               542401
-Model:             ZeroInflatedPoisson   
-Df Residuals:                   542380
-Method:                            MLE   
-Df Model:                           20
-Date:                 Fri, 14 Mar 2025   
-Pseudo R-squ.:                 0.01541
-Time:                         12:07:42   
-Log-Likelihood:            -1.3359e+05
-converged:                        True   
-LL-Null:                   -1.3568e+05
-Covariance Type:             nonrobust   
-LLR p-value:                     0.000
-
-| Feature                             | Coef   | Std Err | Z        | P>|z|  |  0.025,  0.975 |
-|--------------------------------------|--------|---------|----------|--------|----------------|
-| inflate_const                        | 2.4961 | 0.021   | 116.178  | 0.000  | 2.454  ,  2.538  |
-| inflate_num__VehAge                  | 0.2089 | 0.008   | 26.960   | 0.000  | 0.194  ,  0.224  |
-| inflate_num__DrivAge                 | -0.2526 | 0.007   | -34.723  | 0.000  | -0.267  ,  -0.238  |
-| inflate_num__TransformBonusMalus     | -0.2562 | 0.007   | -37.266  | 0.000  | -0.270  ,  -0.243  |
-| inflate_num__TransformDensity        | -0.0421 | 0.010   | -4.054   | 0.000  | -0.062  ,  -0.022  |
-| inflate_cat__Area_E                  | 0.0610 | 0.023   | 2.684    | 0.007  | 0.016  ,  0.105  |
-| inflate_cat__Area_F                  | 0.1224 | 0.048   | 2.557    | 0.011  | 0.029  ,  0.216  |
-| inflate_cat__VehBrand_B12            | 0.2924 | 0.018   | 16.106   | 0.000  | 0.257  ,  0.328  |
-| inflate_cat__VehBrand_B5             | -0.1049 | 0.029   | -3.635   | 0.000  | -0.161  ,  -0.048  |
-| inflate_cat__VehGas_Regular          | -0.1942 | 0.013   | -14.482  | 0.000  | -0.221  ,  -0.168  |
-| inflate_cat__Region_R23              | 0.4735 | 0.072   | 6.581    | 0.000  | 0.333  ,  0.615  |
-| inflate_cat__Region_R24              | -0.3662 | 0.024   | -15.238  | 0.000  | -0.413  ,  -0.319  |
-| inflate_cat__Region_R25              | -0.2765 | 0.053   | -5.258   | 0.000  | -0.380  ,  -0.173  |
-| inflate_cat__Region_R31              | 0.2631 | 0.040   | 6.640    | 0.000  | 0.185  ,  0.341  |
-| inflate_cat__Region_R52              | -0.1444 | 0.033   | -4.361   | 0.000  | -0.209  ,  -0.080  |
-| inflate_cat__Region_R53              | -0.4804 | 0.031   | -15.379  | 0.000  | -0.542  ,  -0.419  |
-| inflate_cat__Region_R54              | -0.1663 | 0.044   | -3.807   | 0.000  | -0.252  ,  -0.081  |
-| inflate_cat__Region_R72              | 0.1954 | 0.037   | 5.271    | 0.000  | 0.123  ,  0.268  |
-| inflate_cat__Region_R73              | 0.1906 | 0.049   | 3.908    | 0.000  | 0.095  ,  0.286  |
-| inflate_cat__Region_R82              | -0.1912 | 0.025   | -7.662   | 0.000  | -0.240  ,  -0.142  |
-| inflate_cat__Region_R83              | 0.3597 | 0.088   | 4.105    | 0.000  | 0.188  ,  0.531  |
-| inflate_cat__Region_R91              | 0.3777 | 0.037   | 10.329   | 0.000  | 0.306  ,  0.449  |
-| inflate_cat__Region_R93              | 0.1596 | 0.026   | 6.115    | 0.000  | 0.108  ,  0.211  |
-| inflate_cat__Region_R94              | 0.2946 | 0.082   | 3.573    | 0.000  | 0.133  ,  0.456  |
-| const                                | -0.0749 | 0.018   | -4.128   | 0.000  | -0.110  ,  -0.039  |
-| num__VehAge                          | 0.0324 | 0.007   | 4.415    | 0.000  | 0.018  ,  0.047  |
-| num__DrivAge                         | -0.0759 | 0.007   | -11.211  | 0.000  | -0.089  ,  -0.063  |
-| num__TransformBonusMalus             | 0.0761 | 0.006   | 12.588   | 0.000  | 0.064  ,  0.088  |
-| cat__Area_D                          | 0.0520 | 0.015   | 3.360    | 0.001  | 0.022  ,  0.082  |
-| cat__Area_E                          | 0.0751 | 0.017   | 4.480    | 0.000  | 0.042  ,  0.108  |
-| cat__Area_F                          | 0.0922 | 0.037   | 2.490    | 0.013  | 0.020  ,  0.165  |
-| cat__VehBrand_B12                    | 0.2593 | 0.017   | 15.144   | 0.000  | 0.226  ,  0.293  |
-| cat__VehGas_Regular                  | -0.1055 | 0.012   | -8.504   | 0.000  | -0.130  ,  -0.081  |
-| cat__Region_R24                      | -0.2292 | 0.020   | -11.358  | 0.000  | -0.269  ,  -0.190  |
-| cat__Region_R25                      | -0.1722 | 0.049   | -3.534   | 0.000  | -0.268  ,  -0.077  |
-| cat__Region_R26                      | -0.1175 | 0.052   | -2.267   | 0.023  | -0.219  ,  -0.016  |
-| cat__Region_R41                      | -0.2001 | 0.050   | -4.036   | 0.000  | -0.297  ,  -0.103  |
-| cat__Region_R52                      | -0.1531 | 0.030   | -5.179   | 0.000  | -0.211  ,  -0.095  |
-| cat__Region_R53                      | -0.2912 | 0.028   | -10.571  | 0.000  | -0.345  ,  -0.237  |
-| cat__Region_R54                      | -0.1739 | 0.040   | -4.361   | 0.000  | -0.252  ,  -0.096  |
-| cat__Region_R73                      | -0.1012 | 0.045   | -2.258   | 0.024  | -0.189  ,  -0.013  |
-| cat__Region_R82                      | -0.1069 | 0.021   | -4.997   | 0.000  | -0.149  ,  -0.065  |
-| cat__Region_R91                      | 0.1021 | 0.033   | 3.139    | 0.002  | 0.038  ,  0.166  |
-| cat__Region_R93                      | 0.0628 | 0.022   | 2.799    | 0.005  | 0.019  ,  0.107  |
-| cat__Region_R94                      | 0.2894 | 0.069   | 4.182    | 0.000  | 0.154  ,  0.425  |
-
 **Explenation:** 
 
 The choice of model is driven by the characteristics of the data. A large proportion of zeros suggests that the data may come from two separate generating processes — one for non-claimers and another for potential claimers. The Zero-Inflated Poisson (ZIP) model helps separate these two groups, leading to improved prediction accuracy.
@@ -127,8 +64,11 @@ MSE =
 
 ## Additional reaserch
 ### Customer segments for which GLM and ML family model predictions differ the most
-
-
+Top client segments where model predictions differ the most:
+1. Clients in region R24
+2. Clients aged 68-87
+3. Clients aged 48-57
+4. Clients with a vehicle power of 6
 
 ### Customers with the highest and lowest risk and their predicted claim frequency for the GLM class model
 
