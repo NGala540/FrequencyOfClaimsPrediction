@@ -45,15 +45,13 @@ The model selection was based on a structure of predicted values very similar to
 
 **Metrics:** 
 
-Classification Accuracy: 0.85
-Classification Precision: 0.11
-Classification Recall: 0.27
-Classification F1: 0.15
-Classification AUC: 0.58
-
-RMSE of regression model: 0.68
-
-MSE of combination: 0.35
+- Classification Accuracy: 0.85
+- Classification Precision: 0.11
+- Classification Recall: 0.27
+- Classification F1: 0.15
+- Classification AUC: 0.58
+- Regression RMSE: 0.68
+- Combination MSE: 0.35
 
 **Other models:**
 
